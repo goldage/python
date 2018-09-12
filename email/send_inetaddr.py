@@ -1,11 +1,21 @@
 #!/usr/bin/python
 #-*-coding:utf-8-*-
+#
+#Description:
+#1.To use this script you should install sendmail module using follow command:
+#   sudo apt-get install sendmail
+#
+#2.Then modify the 'hostname'/'username'/'passwd'/'to_list'.
+#
+#3.Enjoy.
+
 import smtplib
 import os
 from email.mime.text import MIMEText
  
 def get_inet_addr():
-	return  os.popen("ifconfig | egrep '192 | Bcast'").read().lstrip()
+	return str(os.popen("hostname -I").read().lstrip())
+#return  os.popen("ifconfig | egrep '192 | Bcast'").read().lstrip()
 
 def send_email(host,username,passwd,send_to,subject,content):
 	msg = MIMEText( content.encode('utf8'), _subtype = 'html', _charset = 'utf8')
